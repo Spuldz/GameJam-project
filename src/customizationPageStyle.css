@@ -14,7 +14,6 @@ body {
   transform: translate(-50%, -50%);
   background-size: cover;
   background-position: center;
-  background-image: url(assets/characters/enemy1.png);
 }
 
 .customCharCont {
