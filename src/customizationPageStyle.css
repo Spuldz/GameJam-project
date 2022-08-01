@@ -1,0 +1,77 @@
+body {
+  margin: 0px;
+  background-size: cover;
+  background-image: url(assets/customizationPageBackground.jpg);
+}
+
+
+.customChar {
+  width: 400px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  background-position: center;
+  background-image: url(assets/characters/enemy1.png);
+}
+
+.customCharCont {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 670px;
+}
+
+.nextBtn {
+  margin-left: 10px;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(assets/arrowRight.png);
+  cursor: pointer;
+}
+
+.prevBtn {
+  margin-left: 10px;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(assets/arrowLeft.png);
+  cursor: pointer;
+}
+
+.BtnHolder {
+  display: flex;
+  justify-content: space-evenly;
+  width: 1200px;
+}
+
+.footer {
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/
+  height: 250px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+}
+
+.createBtn {
+  width: 200px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-image: url(assets/doneButton.png);
+  cursor: pointer;
+}
