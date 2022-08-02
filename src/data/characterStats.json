@@ -1,5 +1,5 @@
 [
-    {"img": "characters/enemy1.png", "power": 20},
-    {"img": "characters/enemy2.png", "power": 10},
-    {"img": "characters/enemy3.png", "power": 15}
+    {"img": "characters/enemy1.png", "power": 20, "hp": 100, "price": 100, "name":"Psycho"},
+    {"img": "characters/enemy2.png", "power": 10, "hp": 120, "price": 90, "name": "Medal Head"},
+    {"img": "characters/enemy3.png", "power": 15, "hp": 90, "price": 50, "name": "Terror"}
 ]

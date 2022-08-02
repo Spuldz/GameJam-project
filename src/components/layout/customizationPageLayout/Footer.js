@@ -1,4 +1,4 @@
-function Footer() {
+function Footer(props) {
   return (
     <header className="footer">
       <div className="createBtn"></div>

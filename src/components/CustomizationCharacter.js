@@ -1,47 +1,101 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import characterStats from "../data/characterStats.json";
+import Footer from "./layout/customizationPageLayout/Footer";
 
 function CustomizationCharacter(props) {
-  const [char, setChar] = useState(characterStats[0]);
-  let [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0);
+  const [char, setChar] = useState(characterStats[index]);
 
-  let selectedCharacter = characterStats[index];
-  
+  useEffect(() => {
+    setChar(characterStats[index])
+  }, [index])
+
   function getNext() {
-    setIndex(++index)
-
-    if (index > characterStats.length - 1) {
+    if (index > characterStats.length - 1 || (index + 1) > characterStats.length - 1) {
       setIndex(0);
-      selectedCharacter = characterStats[0]
     } else {
-      selectedCharacter = characterStats[index]
+      setIndex(index + 1)
     }
-
-    setChar(selectedCharacter)
+  
   }
   
   function getPrev() {
-    setIndex(--index)
-
-    if (index < 0) {
+    if ( index < 0 || (index - 1) < 0) {
       setIndex(characterStats.length - 1);
-      selectedCharacter = characterStats[characterStats.length - 1]
     } else {
-      selectedCharacter = characterStats[index]
+      setIndex(index - 1)
     }
+  }
 
-    setChar(selectedCharacter)
+  function onNextHandler() {
+      getNext();
+      props.updateNext();
+  }
+
+  function onPreviousHandler() {
+      getPrev();
+      props.updatePrev();
   }
 
   return (
-    <div className="customCharCont">
-      <img className="customChar" id="customChar" src={char.img} alt="character" />
-      <div className="BtnHolder">
-        <div className="prevBtn" id="prevBtn" onClick={getPrev}></div>
-        <div className="nextBtn" onClick={getNext}></div>
+    <>
+      <div className="customCharCont">
+        <img className="customChar" id="customChar" src={char.img} alt="character" />
+        <div className="BtnHolder">
+          <div
+            className="prevBtn"
+            id="prevBtn"
+            onClick={onPreviousHandler}
+          ></div>
+          <div className="nameHolder" id="nameHolder">
+            {char.name}
+          </div>
+          <div className="nextBtn" onClick={onNextHandler}></div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
 export default CustomizationCharacter;
+// import { useEffect, useState } from "react";
+// import characterStats from "../data/characterStats.json";
+
+// function CustomizationCharacter(props) {
+  // const [index, setIndex] = useState(0);
+  // const [char, setChar] = useState(characterStats[index]);
+
+//   useEffect(() => {
+//     setChar(characterStats[index])
+//   }, [index])
+  
+  // function getNext() {
+  //   if (index > characterStats.length - 1 || (index + 1) > characterStats.length - 1) {
+  //     setIndex(0);
+  //   } else {
+  //     setIndex(index + 1)
+  //   }
+
+  // }
+  
+  // function getPrev() {
+  //   if ( index < 0 || (index - 1) < 0) {
+  //     setIndex(characterStats.length - 1);
+  //   } else {
+  //     setIndex(index - 1)
+  //   }
+  // }
+
+//   return (
+//     <div className="customCharCont">
+//       <img className="customChar" id="customChar" src={char.img} alt="character" />
+//       <div className="BtnHolder">
+//         <div className="prevBtn" id="prevBtn" onClick={getPrev}></div>
+//         <div className="nextBtn" onClick={getNext}></div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default CustomizationCharacter;
