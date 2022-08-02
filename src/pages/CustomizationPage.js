@@ -1,11 +1,10 @@
-import CustomizationCharacter from "../components/CustomizationCharacter";
 import Footer from "../components/layout/customizationPageLayout/Footer";
+import StatBoard from "../components/StatBoard";
 
 function CustomizationPage() {
   return (
     <>
-      <CustomizationCharacter />
-      <Footer />
+      <StatBoard />
     </>
   );
 }

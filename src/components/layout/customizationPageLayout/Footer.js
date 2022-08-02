@@ -1,7 +1,7 @@
-function Footer() {
+function Footer(props) {
   return (
     <header className="footer">
-      <div className="createBtn"></div>
+      <div className="createBtn" onClick={props.click}></div>
     </header>
   );
 }
