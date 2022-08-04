@@ -9231,3 +9231,14 @@
     font-style: normal;
     font-display: swap;
 }
+
+.inputField {
+    width: 100%;
+    color: #FFFAFA;
+    background-color: #20222B;
+    height: 56px;
+    padding: 0 21px;
+    border-radius: 8px;
+    transition: all .25s;
+    border: 2px solid transparent;
+}

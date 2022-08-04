@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function RegisterComp() {
   return (
     <div
@@ -102,7 +104,7 @@ function RegisterComp() {
               </div>
               <div className="text-field-wrap">
                 <label htmlFor="wherecomefrom" className="field-label">
-                  How did you find us?
+                  How did you find us? (optional)
                 </label>
                 <select
                   className="text-field w-input inputField"
@@ -158,13 +160,13 @@ function RegisterComp() {
           <div className="extra-form-actions-wrapper margin-top center no-margin-bottom">
             <div className="form-help-text bodySmall70">
               Already registered?{" "}
-              <a
-                href="/login/index.html"
+              <Link
                 className="text-link bodySmall70"
                 style={{ color: "#299617" }}
+                to="/login"
               >
                 Log in now
-              </a>
+              </Link>
             </div>
           </div>
         </div>

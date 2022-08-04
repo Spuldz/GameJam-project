@@ -1,21 +1,25 @@
-import React from 'react';
-function LoginComp() {
+import React from "react";
+import { Link } from "react-router-dom";
+function LoginComp(props) {
   document.querySelector("body").style.backgroundImage = "none";
+
   return (
     <div
       className="utility-page-wrapper"
-      style={{background: "linear-gradient(135deg, #151720, #299617)",backgroundRepeat: "no-repeat",backgroundSize: "cover"}}
+      style={{
+        background: "linear-gradient(135deg, #151720, #299617)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
     >
       <div className="utility-page-wrapper-content with-card">
         <div className="utility-page-form card max-width">
-          <h1 className="utility-card-title h2" style={{textAlign: "left"}}>
+          <h1 className="utility-card-title h2" style={{ textAlign: "left" }}>
             Log in
           </h1>
           <div className="w-form">
             <form
               id="wf-form-sign-in-form"
-              method="POST"
-              action="/login"
               name="wf-form-sign-in-form"
               data-name="sign in form"
             >
@@ -54,7 +58,7 @@ function LoginComp() {
               </div>
               <div
                 className="extra-form-actions-wrapper"
-                style={{marginTop: "32px", marginBottom: "16px"}}
+                style={{ marginTop: "32px", marginBottom: "16px" }}
               >
                 <label className="w-checkbox checkbox-wrap no-margin-bottom">
                   <div className="w-checkbox-input w-checkbox-input--inputType-custom checkbox small"></div>
@@ -64,23 +68,22 @@ function LoginComp() {
                     name="stayloggedin"
                     data-name="Checkbox"
                     placeholder="asdasd"
-                    style={{opacity:"0", position: "absolute",zIndex:"-1"}}
+                    style={{ opacity: "0", position: "absolute", zIndex: "-1" }}
                   ></input>
-                  <label htmlFor="checkbox" className="field-label bodySmall100">
+                  <label
+                    htmlFor="checkbox"
+                    className="field-label bodySmall100"
+                  >
                     Remember Me
                   </label>
                 </label>
-                <a
-                  href="/Forgot-Password/frgpswindex.html"
-                  className="text-link muted bodySmall70"
-                >
+                <a className="text-link muted bodySmall70">
                   Forgot your password?
                 </a>
               </div>
               <input
-                type="submit"
+                type="button"
                 value="Log in"
-                data-wait="Please wait..."
                 className="filled-btn full-width w-button primaryBtn btn"
               ></input>
             </form>
@@ -93,17 +96,17 @@ function LoginComp() {
           </div>
           <div
             className="extra-form-actions-wrapper margin-top center no-margin-bottom"
-            style={{marginTop: "0px"}}
+            style={{ marginTop: "0px" }}
           >
             <div className="form-help-text bodySmall70">
               No account yet?{" "}
-              <a
-                href="/Register/registerindex.html"
+              <Link
                 className="text-link bodySmall70"
-                style={{color: "#299617!important"}}
+                style={{ color: "#299617!important" }}
+                to="/register"
               >
                 Register now
-              </a>
+              </Link>
             </div>
           </div>
         </div>
