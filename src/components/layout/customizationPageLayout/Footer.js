@@ -1,7 +1,7 @@
-function Footer(props) {
+function Footer({ saveCharacter }) {
   return (
     <header className="footer">
-      <div className="createBtn"></div>
+      <div onClick={() => saveCharacter()} className="createBtn"></div>
     </header>
   );
 }

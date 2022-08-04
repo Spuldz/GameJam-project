@@ -29,12 +29,19 @@ function CustomizationPage() {
       setIndex(index - 1)
     }
   }
+
+  function saveCharacter() {
+    localStorage.setItem('character', JSON.stringify(char))
+    localStorage.setItem('logged', 1)
+
+    window.location.href = 'gameplay';
+  }
   
   return (
     <>
       <StatBoard character={char} />
       <CustomizationCharacter next={next} prev={prev} character={char} />
-      <Footer />
+      <Footer saveCharacter={saveCharacter} />
     </>
   );
 }
