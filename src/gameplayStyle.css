@@ -1,0 +1,87 @@
+body {}
+
+.character {
+    width: 100px;
+    height: 200px;
+    background-color: red;
+}
+
+.gameplayFooter {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 10px 0px 10px;
+    position: fixed;
+    width: 100%;
+    height: 220px;
+    display: flex;
+    bottom: 0;
+    justify-content: space-evenly;
+}
+
+.gameOptions {
+    height: 200px;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+#attack1 {
+    background-size: cover;
+    background-position: center;
+    background-image: url(assets/AK.png);
+
+}
+
+#attack2 {
+    background-size: cover;
+    background-position: center;
+    background-image: url(assets/grenade.png);
+}
+
+#heal1 {
+    background-size: cover;
+    background-position: center;
+    background-image: url(assets/HealingPotion.png);
+}
+
+.characterHolder {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.characters {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.info {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.hp {
+    width: 800px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.heartImgHolder {
+    display: flex;
+    font-size: 20px;
+    color: white;
+
+}
+
+.heartImgHolder::before {
+    display: inline;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    content: url(assets/heart.png);
+}

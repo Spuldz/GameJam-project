@@ -10,33 +10,35 @@ function CustomizationPage() {
   const [char, setChar] = useState(characterStats[index]);
 
   useEffect(() => {
-    setChar(characterStats[index])
-  }, [index])
+    setChar(characterStats[index]);
+  }, [index]);
 
   function next() {
-    if (index > characterStats.length - 1 || (index + 1) > characterStats.length - 1) {
+    if (
+      index > characterStats.length - 1 ||
+      index + 1 > characterStats.length - 1
+    ) {
       setIndex(0);
     } else {
-      setIndex(index + 1)
+      setIndex(index + 1);
     }
-  
   }
-  
+
   function prev() {
-    if ( index < 0 || (index - 1) < 0) {
+    if (index < 0 || index - 1 < 0) {
       setIndex(characterStats.length - 1);
     } else {
-      setIndex(index - 1)
+      setIndex(index - 1);
     }
   }
 
   function saveCharacter() {
-    localStorage.setItem('character', JSON.stringify(char))
-    localStorage.setItem('logged', 1)
+    localStorage.setItem("character", JSON.stringify(char));
+    localStorage.setItem("logged", 1);
 
-    window.location.href = 'gameplay';
+    window.location.href = "gameplay";
   }
-  
+
   return (
     <>
       <StatBoard character={char} />

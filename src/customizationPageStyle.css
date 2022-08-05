@@ -51,15 +51,17 @@ body {
 }
 
 .footer {
-  position: fixed;
+  background: transparent;
   padding: 10px 10px 0px 10px;
-  bottom: 0;
+  position: fixed;
   width: 100%;
   height: 250px;
-  background: transparent;
   display: grid;
   place-items: center;
+  margin-top: 319px;
 }
+
+
 
 .createBtn {
   width: 200px;
