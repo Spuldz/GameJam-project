@@ -11,6 +11,11 @@ function GameplayPage() {
   const [enemy, setEnemy] = useState({});
 
   useEffect(() => {
+    let index = Math.floor(Math.random() * characterStats.length - 1);
+    if (index < 0) {
+      index = 2;
+    }
+
     setEnemy({
       hp: getRndInteger(player.character.hp - 30, player.character.hp + 30),
       power: getRndInteger(
@@ -18,8 +23,7 @@ function GameplayPage() {
         player.character.power + player.character.power / 5
       ),
       name: generateEnemyName(),
-      img: characterStats[Math.floor(Math.random() * characterStats.length - 1)]
-        .img,
+      img: characterStats[index].img,
     });
   }, []);
 
