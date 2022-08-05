@@ -22,17 +22,12 @@ function App() {
     }
   }, []);
 
-  function getChar() {
-    let a = JSON.parse(localStorage.getItem("character"));
-    return a.img;
-  }
-
   return (
     <Routes>
       <Route path="/" element={<DefaultPage />} />
       <Route
         path="/gameplay"
-        element={<GameplayPage backgroundImage={getChar} />}
+        element={<GameplayPage />}
       />
       <Route path="/customization" element={<CustomizationPage />} />
       {/* <Route path="/register" element={<RegisterPage />} />
