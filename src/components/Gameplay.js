@@ -6,20 +6,28 @@ import { useNavigate } from "react-router-dom";
 
 function Gameplay({ player, enemy }) {
   const [enemyHealth, setEnemyHealth] = useState(null);
+  const [playerHealth, setPlayerHealth] = useState(null);
   const [fightEnd, setFightEnd] = useState(false);
   const navigate = useNavigate();
 
+  let maxHealth = player.character.hp;
+
   useEffect(() => {
     setEnemyHealth(enemy.hp);
+    setPlayerHealth(player.character.hp);
   }, []);
 
-  function attack() {
+  function attack1() {
     if ((enemyHealth || enemy.hp) - player.character.power < 0) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
       addCoins();
     } else {
       setEnemyHealth((enemyHealth || enemy.hp) - player.character.power);
+      let timer = setInterval(() => {
+        enemyAttack();
+        clearInterval(timer);
+      }, 1000);
     }
 
     console.log("attack");
@@ -27,14 +35,41 @@ function Gameplay({ player, enemy }) {
     console.log(enemy);
   }
 
+  function attack2() {
+    if ((enemyHealth || enemy.hp) - player.character.power < 0) {
+      setEnemyHealth(0);
+      setFightEnd(true); // make bjutifal visualisation for match end :)
+      addCoins();
+    } else {
+      setEnemyHealth((enemyHealth || enemy.hp) - player.character.power - 10);
+      let timer = setInterval(() => {
+        enemyAttack();
+        clearInterval(timer);
+      }, 1000);
+    }
+  }
+
+  function heal() {
+    if (playerHealth >= maxHealth) {
+      setPlayerHealth(maxHealth);
+    } else {
+      setPlayerHealth(playerHealth + 20);
+    }
+  }
+
+  function enemyAttack() {
+    setPlayerHealth(playerHealth - enemy.power);
+  }
+
   function addCoins() {
-    let coins = localStorage.getItem('coins');
-    coins = parseInt(coins) || 0
-    localStorage.setItem('coins', coins + 60); // later change to dynamic coins
+    let coins = localStorage.getItem("coins");
+    coins = parseInt(coins) || 0;
+    localStorage.setItem("coins", coins + 60); // later change to dynamic coins
   }
 
   function playAgain() {
     setFightEnd(false);
+    setEnemyHealth();
   }
 
   function backToLobby() {
@@ -63,7 +98,11 @@ function Gameplay({ player, enemy }) {
             <div className="hp" id="characterHP">
               <h1 style={{ color: "white" }}>{player.character.name}</h1>
               <div className="heartImgHolder">
-                {player.character.hp + "/" + player.character.hp}
+                {(playerHealth === undefined
+                  ? player.character.hp
+                  : playerHealth) +
+                  "/" +
+                  player.character.hp}
               </div>
             </div>
             <div className="hp" id="enemyHP">
@@ -77,7 +116,7 @@ function Gameplay({ player, enemy }) {
           </div>
         </div>
       )}
-      <Footer attack={attack} />
+      <Footer attack1={attack1} attack2={attack2} heal={heal} />
     </>
   );
 }
