@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CustomizationCharacter from "../components/CustomizationCharacter";
 import characterStats from "../data/characterStats.json";
+import customizationPageBackground from "../assets/customizationPageBackground.jpg";
 
 import Footer from "../components/layout/customizationPageLayout/Footer";
 import StatBoard from "../components/StatBoard";
@@ -8,6 +9,9 @@ import StatBoard from "../components/StatBoard";
 function CustomizationPage() {
   const [index, setIndex] = useState(0);
   const [char, setChar] = useState(characterStats[index]);
+
+  document.querySelector("body").style.backgroundImage =
+    "URL(" + customizationPageBackground + ")";
 
   useEffect(() => {
     setChar(characterStats[index]);
