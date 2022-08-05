@@ -17,6 +17,7 @@ function Gameplay({ player, enemy }) {
     if ((enemyHealth || enemy.hp) - player.character.power < 0) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
+      addCoins();
     } else {
       setEnemyHealth((enemyHealth || enemy.hp) - player.character.power);
     }
@@ -24,6 +25,12 @@ function Gameplay({ player, enemy }) {
     console.log("attack");
 
     console.log(enemy);
+  }
+
+  function addCoins() {
+    let coins = localStorage.getItem('coins');
+    coins = parseInt(coins) || 0
+    localStorage.setItem('coins', coins + 60); // later change to dynamic coins
   }
 
   function playAgain() {
