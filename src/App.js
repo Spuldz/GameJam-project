@@ -5,6 +5,7 @@ import DefaultPage from "./pages/DefaultPage";
 import allowedPathsOnLogged from "./data/allowedPathsOnLogged.json";
 import GameplayPage from "./pages/GameplayPage";
 import CoinStorePage from "./pages/CoinStorePage";
+import Shop from "./components/Shop";
 
 function App() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ function App() {
       <Route path="/gameplay" element={<GameplayPage />} />
       <Route path="/customization" element={<CustomizationPage />} />
       <Route path="/store" element={<CoinStorePage />} />
+      <Route path="/gameplay/shop" element={<Shop />} />
     </Routes>
   );
 }
