@@ -102,9 +102,10 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
       addCoins();
       setPlayerWin(true);
     } else {
-      setPlayerHealth(playerHealth + 20);
+      let newPlayerHealth = playerHealth + 20;
+      setPlayerHealth(newPlayerHealth);
 
-      if (playerHealth >= maxHealth) {
+      if (newPlayerHealth >= maxHealth) {
         setPlayerHealth(maxHealth);
       }
 

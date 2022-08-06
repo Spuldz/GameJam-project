@@ -48,7 +48,7 @@ function Shop() {
   }
 
   function backToLobby() {
-    navigate("/customization");
+    navigate("/gameplay");
   }
 
   return (
