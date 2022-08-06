@@ -25,10 +25,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<DefaultPage />} />
-      <Route
-        path="/gameplay"
-        element={<GameplayPage />}
-      />
+      <Route path="/gameplay" element={<GameplayPage />} />
       <Route path="/customization" element={<CustomizationPage />} />
       {/* <Route path="/register" element={<RegisterPage />} />
       <Route path="/forgotPassword" element={<ForgotPasswordPage />} /> */}
