@@ -27,7 +27,7 @@ function GameplayPage() {
         player.character.power + player.character.power / 5
       ),
       name: generateEnemyName(),
-      img: characterStats[index].img,
+      img: 'characters/enemyLeft/' + characterStats[index].img.split('/')[1],
     });
   }
 
