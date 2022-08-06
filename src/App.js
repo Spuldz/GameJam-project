@@ -17,7 +17,7 @@ function App() {
     ) {
       navigate("/gameplay");
     }
-  }, []);
+  }, [window.location.pathname]);
 
   return (
     <Routes>
