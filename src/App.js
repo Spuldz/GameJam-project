@@ -4,6 +4,7 @@ import CustomizationPage from "./pages/CustomizationPage";
 import DefaultPage from "./pages/DefaultPage";
 import allowedPathsOnLogged from "./data/allowedPathsOnLogged.json";
 import GameplayPage from "./pages/GameplayPage";
+import CoinStorePage from "./pages/CoinStorePage";
 
 function App() {
   const navigate = useNavigate();
