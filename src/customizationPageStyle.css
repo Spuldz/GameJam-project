@@ -58,7 +58,7 @@ body {
   height: 250px;
   display: grid;
   place-items: center;
-  margin-top: 319px;
+  bottom: 0;
 }
 
 

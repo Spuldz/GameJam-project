@@ -27,19 +27,19 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
       addCoins();
 
       if (player.level >= 1 && player.level < 20) {
-        localStorage.setItem('level', player.level += 1);
+        localStorage.setItem("level", (player.level += 1));
       } else if (player.level >= 20 && player.level < 50) {
-        localStorage.setItem('level', player.level += 0.5);
+        localStorage.setItem("level", (player.level += 0.5));
       } else if (player.level >= 50 && player.level < 90) {
-        localStorage.setItem('level', player.level += 0.2);
+        localStorage.setItem("level", (player.level += 0.2));
       } else if (player.level >= 90 && player.level < 100) {
-        localStorage.setItem('level', player.level += 0.1);
+        localStorage.setItem("level", (player.level += 0.1));
       } else if (player.level >= 100 && player.level < 150) {
-        localStorage.setItem('level', player.level += 0.05);
+        localStorage.setItem("level", (player.level += 0.05));
       } else if (player.level >= 150 && player.level < 300) {
-        localStorage.setItem('level', player.level += 0.02);
+        localStorage.setItem("level", (player.level += 0.02));
       } else if (player.level >= 300) {
-        localStorage.setItem('level', player.level += 0.01);
+        localStorage.setItem("level", (player.level += 0.01));
       }
 
       setPlayerWin(true);
@@ -116,17 +116,13 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
 
   function playAgain() {
     setFightEnd(false);
-    let enemyChar = generateEnemyChar()
-    setEnemyHealth(enemyChar.hp)
+    let enemyChar = generateEnemyChar();
+    setEnemyHealth(enemyChar.hp);
     setPlayerHealth(player.character.hp);
   }
 
   function backToLobby() {
     navigate("/customization");
-  }
-
-  function test() {
-    <Backdrop />;
   }
 
   return (
