@@ -116,8 +116,8 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
 
   function playAgain() {
     setFightEnd(false);
-    generateEnemyChar()
-    setEnemyHealth(enemy.hp)
+    let enemyChar = generateEnemyChar()
+    setEnemyHealth(enemyChar.hp)
     setPlayerHealth(player.character.hp);
   }
 
