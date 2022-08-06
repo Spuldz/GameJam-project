@@ -11,6 +11,8 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
   const [Winstreak, setWinstreak] = useState(0);
   const [playerWin, setPlayerWin] = useState(false);
   const [playerLose, setPlayerLose] = useState(false);
+  const [enemyImg, setEnemyImg] = useState(enemy.img);
+  const [playerImg, setPlayerImg] = useState(player.character.img);
   const navigate = useNavigate();
 
   let maxHealth = player.character.hp;
@@ -21,7 +23,7 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
   }, []);
 
   function attack1() {
-    if ((enemyHealth || enemy.hp) - player.character.power < 0) {
+    if ((enemyHealth || enemy.hp) - player.character.power <= 0) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
       addCoins();
@@ -44,6 +46,14 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
 
       setPlayerWin(true);
     } else {
+      if (player.character.img.split('/').length - 1 > 1) {
+        player.character.img = 'characters/enemyShoot/' + player.character.img.split('/')[2]
+        setPlayerImg(player.character.img)
+      } else {
+        player.character.img = 'characters/enemyShoot/' + player.character.img.split('/')[1]
+        setPlayerImg(player.character.img)
+      }
+
       if (playerHealth <= 0) {
         setFightEnd(true);
         setPlayerLose(true);
@@ -54,11 +64,18 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
         enemyAttack();
         clearInterval(timer);
       }, 1000);
+
+      if (player.character.img.split('/').length - 1 > 1) {
+        setTimeout(() => {
+          player.character.img = 'characters/' + player.character.img.split('/')[2]
+          setPlayerImg(player.character.img)
+        }, 1000)
+      }
     }
   }
 
   function attack2() {
-    if ((enemyHealth || enemy.hp) - player.character.power < 0) {
+    if ((enemyHealth || enemy.hp) - player.character.power <= 0) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
       addCoins();
@@ -76,7 +93,7 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
   }
 
   function heal() {
-    if ((enemyHealth || enemy.hp) - player.character.power < 0) {
+    if ((enemyHealth || enemy.hp) - player.character.power <= 0) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
       addCoins();
@@ -101,11 +118,17 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
   function enemyAttack() {
     let newPlayerHealth = playerHealth - enemy.power;
     setPlayerHealth(newPlayerHealth);
+    enemy.img = 'characters/enemyLeftShoot/' + enemy.img.split('/')[2]
+    setEnemyImg(enemy.img)
 
     if (newPlayerHealth <= 0) {
       setFightEnd(true);
       setPlayerLose(true);
     }
+    setTimeout(() => {
+      enemy.img = 'characters/enemyLeft/' + enemy.img.split('/')[2]
+      setEnemyImg(enemy.img)
+    }, 1000)
   }
 
   function addCoins() {
@@ -159,12 +182,12 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
         <div className="characterHolder">
           <div className="characters">
             <img
-              src={player.character.img}
+              src={playerImg || player.img}
               className="character"
               id="character"
             />
             ;
-            <img src={enemy.img} className="character" id="enemy" />;
+            <img src={enemyImg || enemy.img} className="character" id="enemy" />;
           </div>
           <div className="info">
             <div className="hp" id="characterHP">
