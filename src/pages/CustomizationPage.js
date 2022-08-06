@@ -39,6 +39,7 @@ function CustomizationPage() {
   function saveCharacter() {
     localStorage.setItem("character", JSON.stringify(char));
     localStorage.setItem("logged", 1);
+    localStorage.setItem("level", 1);
 
     window.location.href = "gameplay";
   }

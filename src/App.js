@@ -9,6 +9,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import GameplayPage from "./pages/GameplayPage";
+import Shop from "./components/Shop";
 
 function App() {
   const navigate = useNavigate();
@@ -28,6 +29,10 @@ function App() {
       <Route
         path="/gameplay"
         element={<GameplayPage />}
+      />
+      <Route
+        path="/gameplay/shop"
+        element={<Shop />}
       />
       <Route path="/customization" element={<CustomizationPage />} />
       {/* <Route path="/register" element={<RegisterPage />} />
