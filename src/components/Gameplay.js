@@ -8,6 +8,9 @@ function Gameplay({ player, enemy }) {
   const [enemyHealth, setEnemyHealth] = useState(null);
   const [playerHealth, setPlayerHealth] = useState(null);
   const [fightEnd, setFightEnd] = useState(false);
+  const [Winstreak, setWinstreak] = useState(0);
+  const [playerWin, setPlayerWin] = useState(false);
+  const [playerLose, setPlayerLose] = useState(false);
   const navigate = useNavigate();
 
   let maxHealth = player.character.hp;
@@ -22,8 +25,14 @@ function Gameplay({ player, enemy }) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
       addCoins();
+      setPlayerWin(true);
     } else {
+      if (playerHealth <= 0) {
+        setFightEnd(true);
+        setPlayerLose(true);
+      }
       setEnemyHealth((enemyHealth || enemy.hp) - player.character.power);
+
       let timer = setInterval(() => {
         enemyAttack();
         clearInterval(timer);
@@ -40,25 +49,49 @@ function Gameplay({ player, enemy }) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
       addCoins();
+      setPlayerWin(true);
     } else {
       setEnemyHealth((enemyHealth || enemy.hp) - player.character.power - 10);
       let timer = setInterval(() => {
         enemyAttack();
+        if (playerHealth <= 0) {
+          setPlayerLose(true);
+        }
         clearInterval(timer);
       }, 1000);
     }
   }
 
   function heal() {
-    if (playerHealth >= maxHealth) {
-      setPlayerHealth(maxHealth);
+    if ((enemyHealth || enemy.hp) - player.character.power < 0) {
+      setEnemyHealth(0);
+      setFightEnd(true); // make bjutifal visualisation for match end :)
+      addCoins();
+      setPlayerWin(true);
     } else {
       setPlayerHealth(playerHealth + 20);
+
+      if (playerHealth >= maxHealth) {
+        setPlayerHealth(maxHealth);
+      }
+
+      let timer = setInterval(() => {
+        enemyAttack();
+        if (playerHealth <= 0) {
+          setPlayerLose(true);
+        }
+        clearInterval(timer);
+      }, 1000);
     }
   }
 
   function enemyAttack() {
     setPlayerHealth(playerHealth - enemy.power);
+
+    if (playerHealth <= 0) {
+      setFightEnd(true);
+      setPlayerLose(true);
+    }
   }
 
   function addCoins() {
@@ -69,6 +102,7 @@ function Gameplay({ player, enemy }) {
 
   function playAgain() {
     setFightEnd(false);
+    setPlayerHealth(player.character.hp);
     setEnemyHealth();
   }
 
@@ -76,12 +110,35 @@ function Gameplay({ player, enemy }) {
     navigate("/customization");
   }
 
+  function test() {
+    <Backdrop />;
+  }
+
   return (
     <>
       {fightEnd ? (
         <>
-          <Modal playAgain={playAgain} backToLobby={backToLobby} />
-          <Backdrop />
+          {playerWin ? (
+            <>
+              <Modal
+                playAgain={playAgain}
+                backToLobby={backToLobby}
+                text={"You Win!"}
+              />
+              <Backdrop />
+            </>
+          ) : null}
+
+          {playerLose ? (
+            <>
+              <Modal
+                playAgain={playAgain}
+                backToLobby={backToLobby}
+                text={"You Lose!"}
+              />
+              <Backdrop />
+            </>
+          ) : null}
         </>
       ) : (
         <div className="characterHolder">
