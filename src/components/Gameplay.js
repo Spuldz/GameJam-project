@@ -46,12 +46,14 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
 
       setPlayerWin(true);
     } else {
-      if (player.character.img.split('/').length - 1 > 1) {
-        player.character.img = 'characters/enemyShoot/' + player.character.img.split('/')[2]
-        setPlayerImg(player.character.img)
+      if (player.character.img.split("/").length - 1 > 1) {
+        player.character.img =
+          "characters/enemyShoot/" + player.character.img.split("/")[2];
+        setPlayerImg(player.character.img);
       } else {
-        player.character.img = 'characters/enemyShoot/' + player.character.img.split('/')[1]
-        setPlayerImg(player.character.img)
+        player.character.img =
+          "characters/enemyShoot/" + player.character.img.split("/")[1];
+        setPlayerImg(player.character.img);
       }
 
       if (playerHealth <= 0) {
@@ -65,11 +67,12 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
         clearInterval(timer);
       }, 1000);
 
-      if (player.character.img.split('/').length - 1 > 1) {
+      if (player.character.img.split("/").length - 1 > 1) {
         setTimeout(() => {
-          player.character.img = 'characters/' + player.character.img.split('/')[2]
-          setPlayerImg(player.character.img)
-        }, 1000)
+          player.character.img =
+            "characters/" + player.character.img.split("/")[2];
+          setPlayerImg(player.character.img);
+        }, 1000);
       }
     }
   }
@@ -118,17 +121,17 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
   function enemyAttack() {
     let newPlayerHealth = playerHealth - enemy.power;
     setPlayerHealth(newPlayerHealth);
-    enemy.img = 'characters/enemyLeftShoot/' + enemy.img.split('/')[2]
-    setEnemyImg(enemy.img)
+    enemy.img = "characters/enemyLeftShoot/" + enemy.img.split("/")[2];
+    setEnemyImg(enemy.img);
 
     if (newPlayerHealth <= 0) {
       setFightEnd(true);
       setPlayerLose(true);
     }
     setTimeout(() => {
-      enemy.img = 'characters/enemyLeft/' + enemy.img.split('/')[2]
-      setEnemyImg(enemy.img)
-    }, 1000)
+      enemy.img = "characters/enemyLeft/" + enemy.img.split("/")[2];
+      setEnemyImg(enemy.img);
+    }, 1000);
   }
 
   function addCoins() {
@@ -158,6 +161,7 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
                 playAgain={playAgain}
                 backToLobby={backToLobby}
                 text={"You Win!"}
+                coins={60}
               />
               <Backdrop />
             </>
@@ -169,6 +173,7 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
                 playAgain={playAgain}
                 backToLobby={backToLobby}
                 text={"You Lose!"}
+                coins={0}
               />
               <Backdrop />
             </>
@@ -183,7 +188,8 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
               id="character"
             />
             ;
-            <img src={enemyImg || enemy.img} className="character" id="enemy" />;
+            <img src={enemyImg || enemy.img} className="character" id="enemy" />
+            ;
           </div>
           <div className="info">
             <div className="hp" id="characterHP">
