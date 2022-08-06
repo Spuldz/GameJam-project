@@ -4,7 +4,7 @@ import Backdrop from "./Backdrop";
 import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 
-function Gameplay({ player, enemy }) {
+function Gameplay({ player, enemy, generateEnemyChar }) {
   const [enemyHealth, setEnemyHealth] = useState(null);
   const [playerHealth, setPlayerHealth] = useState(null);
   const [fightEnd, setFightEnd] = useState(false);
@@ -25,6 +25,23 @@ function Gameplay({ player, enemy }) {
       setEnemyHealth(0);
       setFightEnd(true); // make bjutifal visualisation for match end :)
       addCoins();
+
+      if (player.level >= 1 && player.level < 20) {
+        localStorage.setItem('level', player.level += 1);
+      } else if (player.level >= 20 && player.level < 50) {
+        localStorage.setItem('level', player.level += 0.5);
+      } else if (player.level >= 50 && player.level < 90) {
+        localStorage.setItem('level', player.level += 0.2);
+      } else if (player.level >= 90 && player.level < 100) {
+        localStorage.setItem('level', player.level += 0.1);
+      } else if (player.level >= 100 && player.level < 150) {
+        localStorage.setItem('level', player.level += 0.05);
+      } else if (player.level >= 150 && player.level < 300) {
+        localStorage.setItem('level', player.level += 0.02);
+      } else if (player.level >= 300) {
+        localStorage.setItem('level', player.level += 0.01);
+      }
+
       setPlayerWin(true);
     } else {
       if (playerHealth <= 0) {
@@ -38,10 +55,6 @@ function Gameplay({ player, enemy }) {
         clearInterval(timer);
       }, 1000);
     }
-
-    console.log("attack");
-
-    console.log(enemy);
   }
 
   function attack2() {
@@ -86,9 +99,10 @@ function Gameplay({ player, enemy }) {
   }
 
   function enemyAttack() {
-    setPlayerHealth(playerHealth - enemy.power);
+    let newPlayerHealth = playerHealth - enemy.power;
+    setPlayerHealth(newPlayerHealth);
 
-    if (playerHealth <= 0) {
+    if (newPlayerHealth <= 0) {
       setFightEnd(true);
       setPlayerLose(true);
     }
@@ -102,8 +116,9 @@ function Gameplay({ player, enemy }) {
 
   function playAgain() {
     setFightEnd(false);
+    generateEnemyChar()
+    setEnemyHealth(enemy.hp)
     setPlayerHealth(player.character.hp);
-    setEnemyHealth();
   }
 
   function backToLobby() {

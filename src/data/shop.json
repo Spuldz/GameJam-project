@@ -1,0 +1,4 @@
+[
+    {"id": 1, "name": "power", "description": "Increases the power of your character", "basePrice": 300},
+    {"id": 2, "name": "health", "description": "Increases the health of your character", "basePrice": 200}
+]
