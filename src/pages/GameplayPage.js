@@ -20,7 +20,7 @@ function GameplayPage() {
       index = 2;
     }
     
-    setEnemy({
+    let object = {
       hp: getRndInteger(player.character.hp - Math.floor(player.character.hp / 10), player.character.hp + Math.floor(player.character.hp / 10)),
       power: getRndInteger(
         player.character.power - player.character.power / 5,
@@ -28,7 +28,10 @@ function GameplayPage() {
       ),
       name: generateEnemyName(),
       img: 'characters/enemyLeft/' + characterStats[index].img.split('/')[1],
-    });
+    };
+    setEnemy(object);
+
+    return object;
   }
 
   function getRndInteger(min, max) {
