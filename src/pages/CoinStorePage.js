@@ -4,10 +4,12 @@ import CoinStore from "../components/CoinStore";
 import CoinStoreModal from "../components/CoinStoreModal";
 import { useState } from "react";
 import CoinStoreData from "../data/CoinStoreData.json";
+import { useNavigate } from "react-router-dom";
 
 function CoinStorePage() {
   const [cardClicked, setCardClicked] = useState(false);
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   function payHandler1() {
     setIndex(0);
@@ -39,6 +41,10 @@ function CoinStorePage() {
     setCardClicked(false);
   }
 
+  function back() {
+    navigate("/customization");
+  }
+
   return (
     <>
       {cardClicked ? (
@@ -57,6 +63,7 @@ function CoinStorePage() {
         amount1={CoinStoreData[0].amount}
         amount2={CoinStoreData[1].amount}
         amount3={CoinStoreData[2].amount}
+        back={back}
       />
     </>
   );

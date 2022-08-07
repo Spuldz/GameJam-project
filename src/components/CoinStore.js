@@ -1,10 +1,16 @@
 import { useState } from "react";
 import Backdrop from "./Backdrop";
 import CoinStoreModal from "./CoinStoreModal";
+import background from "../assets/StoreBackground.png";
 
 function CoinStore(props) {
+  document.querySelector("body").style.backgroundImage =
+    "URL(" + background + ")";
   return (
     <>
+      <button className="backBtn" onClick={props.back}>
+        Back
+      </button>
       <div className="main">
         <div className="cardHolder">
           <div className="card" onClick={props.payHandler1}>

@@ -60,7 +60,15 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
         setFightEnd(true);
         setPlayerLose(true);
       }
-      setEnemyHealth((enemyHealth || enemy.hp) - player.character.power);
+      let newEnemyHealth =
+        (enemyHealth || enemy.hp) - player.character.power - 10;
+      setEnemyHealth(newEnemyHealth);
+      if (newEnemyHealth <= 0) {
+        setEnemyHealth(0);
+        setFightEnd(true);
+        addCoins();
+        setPlayerWin(true);
+      }
 
       let timer = setInterval(() => {
         enemyAttack();
@@ -84,7 +92,15 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
       addCoins();
       setPlayerWin(true);
     } else {
-      setEnemyHealth((enemyHealth || enemy.hp) - player.character.power - 10);
+      let newEnemyHealth =
+        (enemyHealth || enemy.hp) - player.character.power - 10;
+      setEnemyHealth(newEnemyHealth);
+      if (newEnemyHealth <= 0) {
+        setEnemyHealth(0);
+        setFightEnd(true);
+        addCoins();
+        setPlayerWin(true);
+      }
       let timer = setInterval(() => {
         enemyAttack();
         if (playerHealth <= 0) {
@@ -138,7 +154,7 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
   function addCoins() {
     let coins = localStorage.getItem("coins");
     coins = parseInt(coins) || 0;
-    localStorage.setItem("coins", coins + 60); // later change to dynamic coins
+    localStorage.setItem("coins", coins + 5); // later change to dynamic coins
   }
 
   function playAgain() {
@@ -162,7 +178,7 @@ function Gameplay({ player, enemy, generateEnemyChar }) {
                 playAgain={playAgain}
                 backToLobby={backToLobby}
                 text={"You Win!"}
-                coins={60}
+                coins={5}
               />
               <Backdrop />
             </>
